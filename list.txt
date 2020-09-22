@@ -1,1 +1,55 @@
 安装完成，进入Git Bash命令
+
+设置名字和email地址 --global 表示本机器上所有git仓库都会使用这个配置
+$ git config --global user.name "Your Name"    设置名字
+$ git config --global user.email "email@example.com"    设置邮箱
+$ cd e:/DB/git    进入本目录
+$ mkdir learngit 创建一个空目录，全部不可有中文
+$ cd learngit 进入该目录
+$ pwd 用于显示当前目录 e:/DB/git/learngit
+$ git init    初始化命令把这个目录变成Git可以管理的仓库
+
+$ git add readme.txt    开始跟踪，放入一个文件，即等于放入暂存区
+$ git commit -m "wrote a readme file"    把文件提交到仓库， -m 后输入的是本次提交的说明
+$ git status    仓库当前的状态
+$ git diff readme.txt    查看该文件上次的修改
+$ git log --pretty=oneline    查看历史记录，--pretty=oneline 简洁单行显示
+$ git reset --hard HEAD^    回上一版本，HEAD^^ 上上一版本 HEAD~100 往上100个版本
+$ git reset --hard 1094a    根据版本号回退
+$ git reflog    记录每次命令，可查看版本号
+$ git checkout -- readme.txt    把文件在工作区（尚未add）的修改全部撤销
+$ git reset HEAD readme.txt    把暂存区的修改撤销掉（unstage），重新放回工作区
+$ cat readme.txt    查看文件内容
+$ rm test.txt    删除文件
+$ git rm test.txt    确定删除
+$ git commit -m "remove test.txt"    备注删除
+$ git checkout -- test.txt    删错了，从版本库恢复
+
+$ git remote add origin git@github.com:账号/learngit.git    添加github远程仓库
+$ git remote add origin git@gitee.com:账号/learngit.git    添加gitee远程仓库
+$ git push -u origin master    初次推送本地库所有内容到远程库
+$ git push origin master    本地提交
+$ git remote -v    查看远程库信息
+$ git clone git@github.com:账号/learngit.git    克隆远程库到本地
+
+$ git branch <分支名>    创建分支
+$ git checkout -b <分支名>    checkout 一步创建+切换分支
+$ git switch -c <分支名>    switch 一步创建+切换分支
+$ git branch    查看分支列表
+$ git switch <分支名>    switch 切换分支
+$ git checkout <分支名>    checkout 切换分支
+$ git merge dev    合并分支（合并前切回master）
+$ git merge --no-ff -m "merged bug fix 101" issue-101    合并分支--no-ff禁用Fast forward
+$ git branch -d dev    删除分支
+$ git branch -D dev    如该分支没有被合并则无法删除，追加 -D 参数强制删除
+$ git log --graph --pretty=oneline --abbrev-commit    看分支的合并情况
+
+$ git stash    储藏当前工作现场
+$ git stash list    查看存储的工作现场列表
+$ git stash apply stash@{1}    恢复到某个工作现场
+$ git stash apply    恢复工作现场
+$ git stash drop    删除stash
+$ git stash pop    一步恢复并删除存储的工作现场
+
+$ git cherry-pick 4c805e2    其他分区改的bug，也存在本分区，用修复bug的commit改本分区的同bug
+$ git log --graph --pretty=oneline --abbrev-commit    看分支历史
